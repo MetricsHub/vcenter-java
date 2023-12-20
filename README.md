@@ -5,7 +5,7 @@
 ![GitHub top language](https://img.shields.io/github/languages/top/sentrysoftware/vcenter)
 ![License](https://img.shields.io/github/license/sentrysoftware/vcenter)
 
-VCenter Java Client facilitates secure interactions with a VMware vCenter server by initiating the request for CIM Service Tickets. Upon successful acquisition, these tickets provide the requisite authorization to execute WBEM queries, enabling seamless communication and control within the VMware environment.
+The VCenter Java Client class provides functionality to establish a secure connection with a VMware vCenter server and request authentication certificates.
 
 See [Project Documentation](https://sentrysoftware.github.io/vcenter/) and the [Javadoc](https://sentrysoftware.github.io/vcenter/apidocs/) for more information on how to use this library in your code.
 

@@ -1,5 +1,5 @@
 # VCenter Java Client
-VCenter Java Client facilitates secure interactions with a VMware vCenter server by initiating the request for CIM Service Tickets. Upon successful acquisition, these tickets provide the requisite authorization to execute WBEM queries, enabling seamless communication and control within the VMware environment.
+The VCenter Java Client class provides functionality to establish a secure connection with a VMware vCenter server and request authentication certificates.
 # How to run the VCenter Client inside Java
 
 Add VCenter in the list of dependencies in your [Maven **pom.xml**](https://maven.apache.org/pom.html):
