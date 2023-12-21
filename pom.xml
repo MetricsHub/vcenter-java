@@ -6,7 +6,7 @@
 	<name>VCenter Java Client</name>
 	<version>1.0.00-SNAPSHOT</version>
 	<description>VCenter Client Library for Java</description>
-    <packaging>jar</packaging>
+	<packaging>jar</packaging>
 
 	<organization>
 		<name>Sentry Software</name>
