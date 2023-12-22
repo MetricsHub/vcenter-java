@@ -1,11 +1,13 @@
-# oss-maven-template
+# VCenter Java Client
 
-![GitHub release (with filter)](https://img.shields.io/github/v/release/sentrysoftware/oss-maven-template)
-![Build](https://img.shields.io/github/actions/workflow/status/sentrysoftware/oss-maven-template/deploy.yml)
-![GitHub top language](https://img.shields.io/github/languages/top/sentrysoftware/oss-maven-template)
-![License](https://img.shields.io/github/license/sentrysoftware/oss-maven-template)
+![GitHub release (with filter)](https://img.shields.io/github/v/release/sentrysoftware/vcenter)
+![Build](https://img.shields.io/github/actions/workflow/status/sentrysoftware/vcenter/deploy.yml)
+![GitHub top language](https://img.shields.io/github/languages/top/sentrysoftware/vcenter)
+![License](https://img.shields.io/github/license/sentrysoftware/vcenter)
 
-Repository template for all Sentry open-source Java projects, published on Maven Central.
+The VCenter Java Client class provides functionality to establish a secure connection with a VMware vCenter server and request authentication certificates.
+
+See [Project Documentation](https://sentrysoftware.github.io/vcenter/) and the [Javadoc](https://sentrysoftware.github.io/vcenter/apidocs/) for more information on how to use this library in your code.
 
 ## Build instructions
 
