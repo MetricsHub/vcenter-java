@@ -7,7 +7,7 @@
 
 The VCenter Java Client class provides functionality to establish a secure connection with a VMware vCenter server and request authentication certificates.
 
-See [Project Documentation](https://sentrysoftware.github.io/vcenter/) and the [Javadoc](https://sentrysoftware.github.io/vcenter/apidocs/) for more information on how to use this library in your code.
+See [Project Documentation](https://sentrysoftware.org/vcenter/) and the [Javadoc](https://sentrysoftware.org/vcenter/apidocs/) for more information on how to use this library in your code.
 
 ## Build instructions
 
