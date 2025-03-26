@@ -1,10 +1,10 @@
-package org.sentrysoftware.vcenter;
+package org.metricshub.vcenter;
 
 /*-
  * ╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲
  * VCenter Java Client
  * ჻჻჻჻჻჻
- * Copyright (C) 2023 Sentry Software
+ * Copyright (C) 2023 - 2025 MetricsHub
  * ჻჻჻჻჻჻
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.

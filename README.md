@@ -1,13 +1,13 @@
 # VCenter Java Client
 
-![GitHub release (with filter)](https://img.shields.io/github/v/release/sentrysoftware/vcenter)
-![Build](https://img.shields.io/github/actions/workflow/status/sentrysoftware/vcenter/deploy.yml)
-![GitHub top language](https://img.shields.io/github/languages/top/sentrysoftware/vcenter)
-![License](https://img.shields.io/github/license/sentrysoftware/vcenter)
+![GitHub release (with filter)](https://img.shields.io/github/v/release/metricshub/vcenter-java)
+![Build](https://img.shields.io/github/actions/workflow/status/metricshub/vcenter-java/deploy.yml)
+![GitHub top language](https://img.shields.io/github/languages/top/metricshub/vcenter-java)
+![License](https://img.shields.io/github/license/metricshub/vcenter-java)
 
 The VCenter Java Client class provides functionality to establish a secure connection with a VMware vCenter server and request authentication certificates.
 
-See [Project Documentation](https://sentrysoftware.org/vcenter/) and the [Javadoc](https://sentrysoftware.org/vcenter/apidocs/) for more information on how to use this library in your code.
+See [Project Documentation](https://metricshub.org/vcenter-java/) and the [Javadoc](https://metricshub.org/vcenter-java/apidocs/) for more information on how to use this library in your code.
 
 ## Build instructions
 
