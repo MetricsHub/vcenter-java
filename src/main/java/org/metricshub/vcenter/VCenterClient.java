@@ -20,14 +20,6 @@ package org.metricshub.vcenter;
  * ╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱
  */
 
-import java.net.InetAddress;
-import java.net.URL;
-import java.util.Arrays;
-import java.util.List;
-import java.util.function.Consumer;
-import java.util.function.Supplier;
-import java.util.stream.Collectors;
-
 import com.vmware.vim25.HostServiceTicket;
 import com.vmware.vim25.InvalidLogin;
 import com.vmware.vim25.mo.Datacenter;
@@ -36,17 +28,29 @@ import com.vmware.vim25.mo.HostSystem;
 import com.vmware.vim25.mo.InventoryNavigator;
 import com.vmware.vim25.mo.ManagedEntity;
 import com.vmware.vim25.mo.ServiceInstance;
+import java.net.InetAddress;
+import java.net.URL;
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 /**
  * VCenterClient class for interacting with VMware vCenter server.
  */
-public class VCenterClient {
+public final class VCenterClient {
 
 	private static final String ENTITY_HOST_SYSTEM = "HostSystem";
 	private static final String ENTITY_DATA_CENTER = "Datacenter";
 
 	private static Supplier<Boolean> isDebugEnabled;
 	private static Consumer<String> debug;
+
+	/**
+	 * Private constructor to prevent instantiation of this class
+	 */
+	private VCenterClient() {}
 
 	/**
 	 * Sets the debug methods to be used by the VCenterClient class.
@@ -64,7 +68,7 @@ public class VCenterClient {
 	 * @param isDebugEnabledMethod The static method that returns a boolean whether the debug mode is enabled or not
 	 * @param debugMethod The static method that will print the debug message somewhere
 	 */
-	public static void setDebug(Supplier<Boolean> isDebugEnabledMethod, Consumer<String> debugMethod) {
+	public static void setDebug(final Supplier<Boolean> isDebugEnabledMethod, final Consumer<String> debugMethod) {
 		isDebugEnabled = isDebugEnabledMethod;
 		debug = debugMethod;
 	}
@@ -86,8 +90,12 @@ public class VCenterClient {
 	 * @throws InvalidLogin when the specified username/password is... well, invalid
 	 * @throws Exception when anything else happens
 	 */
-	public static String requestCertificate(String vCenterName, String username, String password, String hostname) throws InvalidLogin, Exception {
-
+	public static String requestCertificate(
+		final String vCenterName,
+		final String username,
+		final String password,
+		final String hostname
+	) throws InvalidLogin, Exception {
 		ServiceInstance serviceInstance = null;
 
 		try {
@@ -102,19 +110,16 @@ public class VCenterClient {
 
 			if (hostSystem == null) {
 				throw new Exception("Unable to find host " + hostname + " in VCenter " + vCenterName);
-			}
-			else {
+			} else {
 				HostServiceTicket ticket = hostSystem.acquireCimServicesTicket();
 				return ticket.getSessionId();
 			}
-
 		} finally {
 			if (serviceInstance != null) {
 				serviceInstance.getServerConnection().logout();
 			}
 		}
 	}
-
 
 	/**
 	 * Retrieve in VCenter the managed entity that corresponds to the specified systemName
@@ -123,8 +128,8 @@ public class VCenterClient {
 	 * @return The HostSystem instance that matches with specified systemName. <p>null if not found.
 	 * @throws Exception
 	 */
-	private static HostSystem getHostSystemManagedEntity(ServiceInstance serviceInstance, String systemName) throws Exception {
-
+	private static HostSystem getHostSystemManagedEntity(final ServiceInstance serviceInstance, final String systemName)
+		throws Exception {
 		// Declarations
 		String entityName;
 		String shortEntityName;
@@ -146,7 +151,7 @@ public class VCenterClient {
 				entityName = managedEntity.getName();
 				if (systemName.equalsIgnoreCase(entityName)) {
 					// Found it! Return immediately the corresponding HostSystem object
-					return (HostSystem)managedEntity;
+					return (HostSystem) managedEntity;
 				}
 			}
 
@@ -160,7 +165,7 @@ public class VCenterClient {
 						shortEntityName = entityName.substring(0, dotIndex);
 						if (systemName.equalsIgnoreCase(shortEntityName)) {
 							// Found it! Return immediately the corresponding HostSystem object
-							return (HostSystem)managedEntity;
+							return (HostSystem) managedEntity;
 						}
 					}
 				}
@@ -176,7 +181,14 @@ public class VCenterClient {
 				for (ManagedEntity managedEntity : managedEntities) {
 					entityList.append(" - ").append(managedEntity.getName()).append("\n");
 				}
-				debug.accept("VCenterClient: Couldn't find host " + systemName + " in the list of managed entities in VCenter " + serviceInstance.getServerConnection().getUrl().getHost() + ":\n" + entityList);
+				debug.accept(
+					"VCenterClient: Couldn't find host " +
+					systemName +
+					" in the list of managed entities in VCenter " +
+					serviceInstance.getServerConnection().getUrl().getHost() +
+					":\n" +
+					entityList
+				);
 				debug.accept("VCenterClient: Will now try with the IP address of " + systemName);
 			}
 		}
@@ -191,23 +203,22 @@ public class VCenterClient {
 		InetAddress[] hostIPaddresses;
 		try {
 			hostIPaddresses = InetAddress.getAllByName(systemName);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			throw new Exception("Couldn't resolve " + systemName + " into a valid IP address");
 		}
 
 		// Go through each datacenter
 		for (ManagedEntity datacenterEntity : managedEntities) {
-
 			// Go through each IP address of the specified system name
 			for (InetAddress hostIPaddress : hostIPaddresses) {
-
 				// Use the index to find the managed entity we want, by IP address
-				ManagedEntity[] managedEntitiesInDatacenter = serviceInstance.getSearchIndex().findAllByIp((Datacenter)datacenterEntity, hostIPaddress.getHostAddress(), false);
+				ManagedEntity[] managedEntitiesInDatacenter = serviceInstance
+					.getSearchIndex()
+					.findAllByIp((Datacenter) datacenterEntity, hostIPaddress.getHostAddress(), false);
 
 				// If we got something, return immediately the corresponding HostSystem instance, of the first match!
 				if (managedEntitiesInDatacenter != null && managedEntitiesInDatacenter.length != 0) {
-					return (HostSystem)managedEntitiesInDatacenter[0];
+					return (HostSystem) managedEntitiesInDatacenter[0];
 				}
 			}
 		}
@@ -224,8 +235,11 @@ public class VCenterClient {
 	 * @throws InvalidLogin for bad credentials
 	 * @throws Exception when anything else goes south
 	 */
-	public static List<String> getAllHostSystemManagedEntities(String vCenterName, String username, String password) throws Exception {
-
+	public static List<String> getAllHostSystemManagedEntities(
+		final String vCenterName,
+		final String username,
+		final String password
+	) throws Exception {
 		ServiceInstance serviceInstance = null;
 
 		try {
@@ -244,17 +258,14 @@ public class VCenterClient {
 			InventoryNavigator inventoryNavigator = new InventoryNavigator(rootFolder);
 
 			// Get all entities of type "HostSystem" and return as a list of HostSystem
-			return Arrays.stream(inventoryNavigator.searchManagedEntities(ENTITY_HOST_SYSTEM))
-					.map(ManagedEntity::getName)
-					.collect(Collectors.toList())
-					;
-
+			return Arrays
+				.stream(inventoryNavigator.searchManagedEntities(ENTITY_HOST_SYSTEM))
+				.map(ManagedEntity::getName)
+				.collect(Collectors.toList());
 		} finally {
 			if (serviceInstance != null) {
 				serviceInstance.getServerConnection().logout();
 			}
 		}
-
 	}
-
 }

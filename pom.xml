@@ -7,7 +7,6 @@
 		<version>2</version>
 	</parent>
 
-	<groupId>org.metricshub</groupId>
 	<artifactId>vcenter</artifactId>
 	<version>1.1.00-SNAPSHOT</version>
 
@@ -19,7 +18,36 @@
 		<url>https://metricshub.com</url>
 	</organization>
 
-	<url>https://metricshub.org/vcenter</url>
+	<build>
+		<plugins>
+			<!-- Prettier -->
+			<plugin>
+				<groupId>com.hubspot.maven.plugins</groupId>
+				<artifactId>prettier-maven-plugin</artifactId>
+				<version>0.21</version>
+				<configuration>
+					<prettierJavaVersion>2.5.0</prettierJavaVersion>
+					<ignoreConfigFile>false</ignoreConfigFile>
+					<ignoreEditorConfig>false</ignoreEditorConfig>
+					<inputGlobs>
+						<inputGlob>src/main/java/**/*.java</inputGlob>
+						<inputGlob>src/test/java/**/*.java</inputGlob>
+						<inputGlob>src/main/java21/**/*.java</inputGlob>
+					</inputGlobs>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>validate</phase>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<url>https://metricshub.org/vcenter-java</url>
 	<inceptionYear>2023</inceptionYear>
 
 	<licenses>
@@ -32,12 +60,12 @@
 
 	<issueManagement>
 		<system>GitHub</system>
-		<url>https://github.com/metricshub/vcenter/issues/</url>
+		<url>https://github.com/metricshub/vcenter-java/issues/</url>
 	</issueManagement>
 
 	<scm>
-		<connection>scm:git:https://github.com/metricshub/vcenter.git</connection>
-		<url>https://github.com/metricshub/vcenter</url>
+		<connection>scm:git:https://github.com/metricshub/vcenter-java.git</connection>
+		<url>https://github.com/metricshub/vcenter-java</url>
 		<tag>HEAD</tag>
 	</scm>
 
@@ -101,6 +129,16 @@
 			<groupId>com.vmware</groupId>
 			<artifactId>vijava</artifactId>
 			<version>5.1</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>2.4.0-b180830.0359</version>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jaxb</groupId>
+			<artifactId>jaxb-runtime</artifactId>
+			<version>2.4.0-b180830.0438</version>
 		</dependency>
 	</dependencies>
 
