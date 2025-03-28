@@ -14,7 +14,7 @@
 	<description>VCenter Client Library for Java</description>
 
 	<organization>
-		<name>Metricshub</name>
+		<name>MetricsHub</name>
 		<url>https://metricshub.com</url>
 	</organization>
 
@@ -32,7 +32,6 @@
 					<inputGlobs>
 						<inputGlob>src/main/java/**/*.java</inputGlob>
 						<inputGlob>src/test/java/**/*.java</inputGlob>
-						<inputGlob>src/main/java21/**/*.java</inputGlob>
 					</inputGlobs>
 				</configuration>
 				<executions>
