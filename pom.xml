@@ -7,7 +7,7 @@
 		<version>2</version>
 	</parent>
 
-	<artifactId>vcenter</artifactId>
+	<artifactId>vcenter-java</artifactId>
 	<version>1.1.00-SNAPSHOT</version>
 
 	<name>VCenter Java Client</name>
@@ -133,11 +133,6 @@
 			<groupId>javax.xml.bind</groupId>
 			<artifactId>jaxb-api</artifactId>
 			<version>2.4.0-b180830.0359</version>
-		</dependency>
-		<dependency>
-			<groupId>org.glassfish.jaxb</groupId>
-			<artifactId>jaxb-runtime</artifactId>
-			<version>2.4.0-b180830.0438</version>
 		</dependency>
 	</dependencies>
 
