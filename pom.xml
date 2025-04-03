@@ -8,7 +8,7 @@
 	</parent>
 
 	<artifactId>vcenter-java</artifactId>
-	<version>1.1.00-SNAPSHOT</version>
+	<version>1.0.02</version>
 
 	<name>VCenter Java Client</name>
 	<description>VCenter Client Library for Java</description>
@@ -65,7 +65,7 @@
 	<scm>
 		<connection>scm:git:https://github.com/metricshub/vcenter-java.git</connection>
 		<url>https://github.com/metricshub/vcenter-java</url>
-		<tag>HEAD</tag>
+		<tag>v1.0.02</tag>
 	</scm>
 
 	<developers>
@@ -98,7 +98,7 @@
 
 		<!-- Reproducible Build -->
 		<!-- See https://maven.apache.org/guides/mini/guide-reproducible-builds.html -->
-		<project.build.outputTimestamp>2024-01-26T13:30:25Z</project.build.outputTimestamp>
+		<project.build.outputTimestamp>2025-04-03T12:49:45Z</project.build.outputTimestamp>
 	</properties>
 
 	<dependencyManagement>
