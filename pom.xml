@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.metricshub</groupId>
 		<artifactId>oss-parent</artifactId>
-		<version>2</version>
+		<version>4</version>
 	</parent>
 
 	<artifactId>vcenter-java</artifactId>
@@ -98,7 +98,7 @@
 
 		<!-- Reproducible Build -->
 		<!-- See https://maven.apache.org/guides/mini/guide-reproducible-builds.html -->
-		<project.build.outputTimestamp>2024-01-26T13:30:25Z</project.build.outputTimestamp>
+		<project.build.outputTimestamp>2025-04-03T12:50:21Z</project.build.outputTimestamp>
 	</properties>
 
 	<dependencyManagement>
